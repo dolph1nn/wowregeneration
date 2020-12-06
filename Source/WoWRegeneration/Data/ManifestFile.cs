@@ -83,7 +83,7 @@ namespace WoWRegeneration.Data
             if (WoWRegeneration.CurrentSession.Os == "OSX" && file.Filename == "base-Win.MPQ")
                 return false;
 
-            if (file.Filename == "alternate.MPQ" && file.Info != WoWRegeneration.CurrentSession.Locale)
+            if (file.Filename == "alternate.MPQ" && WoWRegeneration.CurrentSession.Locale != "All" && file.Info != WoWRegeneration.CurrentSession.Locale)
                 return false;
 
             if (WoWRegeneration.CurrentSession.CompletedFiles.Contains(file.Path) &&
