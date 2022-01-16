@@ -10,12 +10,13 @@ namespace WoWRegeneration
 
         /// <summary>
         ///     Program start point
+        ///     Allows command-line arguments - for example "WoWRegeneration.exe enUS Win"
         /// </summary>
-        private static void Main()
+        private static void Main(string[] args)
         {
             InitConsole();
 
-            WoWRegeneration.Process();
+            WoWRegeneration.Process(args[0], args[1]);
 
             WaitUntilEnd();
         }

@@ -10,33 +10,33 @@ namespace WoWRegeneration
     {
         public static Session CurrentSession { get; set; }
 
-        public static void Process()
+        public static void Process(string loc, string _os)
         {
             Session previousSession = Session.LoadSession();
 
             if (previousSession == null)
             {
-                EntryPointNewSession();
+                EntryPointNewSession(loc, _os);
             }
             else if (previousSession.SessionCompleted)
             {
-                EntryPointNewSession();
+                EntryPointNewSession(loc, _os);
             }
             else
             {
                 if (!UserInputs.SelectContinueSession(previousSession))
-                    EntryPointNewSession();
+                    EntryPointNewSession(loc, _os);
                 else
                     EntryPointResumeSession(previousSession);
             }
         }
 
-        private static void EntryPointNewSession()
+        private static void EntryPointNewSession(string locale, string os)
         {
             WoWRepository repository = UserInputs.SelectRepository();
             ManifestFile manifest = ManifestFile.FromRepository(repository);
-            string locale = UserInputs.SelectLocale(manifest);
-            string os = UserInputs.SelectOs();
+            if (locale == null) locale = UserInputs.SelectLocale(manifest);
+            if (os == null) os = UserInputs.SelectOs();
 
             CurrentSession = new Session(repository.GetMFilName(), locale, os);
             CurrentSession.SaveSession();
