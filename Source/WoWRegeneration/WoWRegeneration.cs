@@ -10,22 +10,22 @@ namespace WoWRegeneration
     {
         public static Session CurrentSession { get; set; }
 
-        public static void Process(string loc, string _os)
+        public static void Process(string inputLocale, string inputOs)
         {
             Session previousSession = Session.LoadSession();
 
             if (previousSession == null)
             {
-                EntryPointNewSession(loc, _os);
+                EntryPointNewSession(inputLocale, inputOs);
             }
             else if (previousSession.SessionCompleted)
             {
-                EntryPointNewSession(loc, _os);
+                EntryPointNewSession(inputLocale, inputOs);
             }
             else
             {
                 if (!UserInputs.SelectContinueSession(previousSession))
-                    EntryPointNewSession(loc, _os);
+                    EntryPointNewSession(inputLocale, inputOs);
                 else
                     EntryPointResumeSession(previousSession);
             }

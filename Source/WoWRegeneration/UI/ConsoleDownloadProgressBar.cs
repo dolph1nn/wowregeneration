@@ -27,7 +27,7 @@ namespace WoWRegeneration.UI
             Console.Clear();
         }
 
-        public void Update(FileObject file, float pourcentage, long bytesReceived, long totalBytes)
+        public void Update(FileObject file, float percentage, long bytesReceived, long totalBytes)
         {
             if (file == null)
                 return;
@@ -52,7 +52,7 @@ namespace WoWRegeneration.UI
                 SetText("Downloaded  : " + AlignText(HumanReadableByteCount(bytesReceived), 50, false),
                         ConsoleColor.Yellow, 0, y + 4);
                 SetText(
-                    "Pourcent    : " + AlignText(pourcentage.ToString(CultureInfo.InvariantCulture) + "%", 50, false),
+                    "Percent    : " + AlignText(percentage.ToString(CultureInfo.InvariantCulture) + "%", 50, false),
                     ConsoleColor.Yellow, 0, y + 5);
 
                 Console.CursorTop = y;
