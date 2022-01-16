@@ -15,7 +15,7 @@ namespace WoWRegeneration
         private static void Main(string[] args)
         {
             string inLocale = null, inOs = null;
-            if (args.Length == 1) inLocale = args[0]; else if (args.Length == 2) inOs = args[1];
+            if (args.Length == 1) inLocale = args[0]; else if (args.Length == 2) { inLocale = args[0]; inOs = args[1] }
             InitConsole();
 
             WoWRegeneration.Process(inLocale, inOs);
